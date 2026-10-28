@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SILENT ECHOES — Digital Humanity</title>
+<meta name="description" content="An interactive experience about the hidden human cost of our digital lives. An English class project on Digital Humanity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>try{if(localStorage.getItem("echoes-theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="progress-bar" aria-hidden="true"></div>
+<div id="scanlines" aria-hidden="true"></div>
+<a class="skip-link" href="#intro">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<nav id="nav" aria-label="Main navigation">
+  <a class="brand" href="#top">SILENT<span>_</span>ECHOES</a>
+  <div class="nav-links">
+    <a href="#ch1">Attention</a>
+    <a href="#ch2">Echoes</a>
+    <a href="#ch3">Conflicts</a>
+    <a href="#ch4">Cost</a>
+    <a href="#ch5">Reconnect</a>
+    <a href="#watch">Watch</a>
+    <a href="#feed">Live&nbsp;Feed</a>
+  </div>
+  <button id="theme-toggle" class="theme-btn" aria-label="Toggle light / dark theme" title="Toggle light / dark">☀</button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="top">
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="hero-grid">
+    <div class="hero-inner">
+      <p class="overline">// AN INTERACTIVE EXPERIENCE — DIGITAL HUMANITY PROJECT</p>
+      <h1 class="glitch" data-text="SILENT ECHOES">SILENT ECHOES</h1>
+      <p class="typewriter"><span id="typed"></span><span class="caret">▌</span></p>
+      <p class="hero-sub">A journey through the hidden human cost of our digital lives:<br>
+      attention, harassment, war — and water.</p>
+      <div class="hero-btns">
+        <a class="btn btn-primary" href="#intro">Begin the descent ↓</a>
+        <a class="btn btn-ghost" href="#feed">Jump to live signal</a>
+      </div>
+    </div>
+    <div class="hero-film">
+      <p class="film-tag">◈ OUR SHORT FILM</p>
+      <div class="film-frame">
+        <video id="hero-film" src="Silent_Echoes-Digital%20Humanity%20.mp4" muted loop playsinline preload="metadata" aria-label="Silent Echoes — the short film"></video>
+        <button id="film-toggle" class="film-toggle" aria-label="Play the film with sound">▶</button>
+      </div>
+      <p class="film-cap">click ▶ for sound — the film plays muted as a live teaser</p>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span></span></div>
+</header>
+
+<main>
+
+<!-- ============ INTRO ============ -->
+<section id="intro" class="section">
+  <div class="section-head reveal">
+    <p class="chapter-tag">THE SIGNAL</p>
+    <h2>We live through screens.<br><em>What does that do to us?</em></h2>
+  </div>
+  <div class="prose reveal">
+    <p>Every day, humanity pours a third of its waking life into glowing rectangles. We work, learn, love, argue and grieve online. The digital world is not separate from the "real" one anymore — <strong>it shapes it, funds it, and sometimes destroys it.</strong></p>
+    <p>This project follows the echoes our clicks leave behind: in our brains, in our classrooms, in war zones, and in the rivers that cool the machines.</p>
+  </div>
+  <div class="stat-grid reveal">
+    <div class="stat-card"><span class="stat-num" data-target="6.65" data-decimals="2">0</span><span class="stat-unit">hours</span><p>average daily screen time worldwide <cite>(DataReportal, 2024)</cite></p></div>
+    <div class="stat-card"><span class="stat-num" data-target="5.6" data-decimals="1">0</span><span class="stat-unit">billion</span><p>people connected to the internet — most of humanity is now online</p></div>
+    <div class="stat-card"><span class="stat-num" data-target="46" data-decimals="0">0</span><span class="stat-unit">%</span><p>of US teenagers have experienced cyberbullying <cite>(Pew Research, 2022)</cite></p></div>
+    <div class="stat-card"><span class="stat-num" data-target="24.7" data-decimals="1">0</span><span class="stat-unit">billion L</span><p>of water consumed by Google's data centres in 2023 alone</p></div>
+  </div>
+
+  <!-- DATA TRAIL -->
+  <div class="widget reveal" id="trail-widget">
+    <div class="widget-head">
+      <h3>A DAY, AS THE ALGORITHM SEES IT <span class="blink">●</span></h3>
+      <p>Click through an ordinary day. Watch the profile it builds.</p>
+    </div>
+    <div class="trail-body">
+      <div class="trail-left">
+        <p id="trail-time" class="trail-time">— : —</p>
+        <p id="trail-act" class="trail-act">Press START to begin your day.</p>
+        <button class="btn btn-primary" id="trail-next">▶ Start the day</button>
+      </div>
+      <div class="trail-profile">
+        <p class="trail-title">USER PROFILE — LIVE</p>
+        <div id="trail-chips" class="chips"></div>
+        <p id="trail-verdict" class="trail-verdict"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 1 ============ -->
+<section id="ch1" class="section chapter">
+  <div class="ghost-num" aria-hidden="true">01</div>
+  <div class="section-head reveal">
+    <p class="chapter-tag">CHAPTER 01 — MENTAL HEALTH</p>
+    <h2>THE ATTENTION ECONOMY</h2>
+    <p class="tagline">"If you're not paying for the product, you <em>are</em> the product."</p>
+  </div>
+  <div class="two-col">
+    <div class="prose reveal">
+      <p>Social media is not designed to be useful — it is designed to be <strong>impossible to put down</strong>. Infinite scroll, pull-to-refresh, autoplay, streaks: every feature is a slot-machine mechanic engineered to give your brain a small dopamine reward and keep you scrolling.</p>
+      <p>The cost is measurable. Studies link heavy social-media use in teenagers to higher rates of anxiety, depression, poor sleep and loneliness. A generation that is permanently connected reports feeling more alone than any before it.</p>
+      <p>Silicon Valley insiders admitted it themselves in Netflix's documentary <em>The Social Dilemma</em>: teams of engineers compete to capture your attention, because your attention is what is being sold to advertisers.</p>
+      <blockquote>"A whole generation is more anxious, more depressed… This is checkmate on humanity." <cite>— The Social Dilemma (2020)</cite></blockquote>
+    </div>
+    <div class="reveal">
+      <div class="video-wrap lite" data-ytid="uaaC57tcci0" data-title="The Social Dilemma — Official Trailer (Netflix)"></div>
+      <p class="video-caption">▸ The Social Dilemma — official trailer, Netflix (2020). Silicon Valley insiders explain how platforms exploit human psychology. <a href="https://youtu.be/uaaC57tcci0" target="_blank" rel="noopener">↗ open on YouTube</a></p>
+    </div>
+  </div>
+
+  <!-- MIRROR WIDGET v2 — ECHO -->
+  <div class="widget reveal" id="mirror-widget">
+    <div class="widget-head">
+      <h3>ECHO — YOUR MIRROR COMPANION <span class="blink">●</span></h3>
+      <p>ECHO lives on your balance. Log what you do: scroll too much and it rusts into a cold machine; step outside and it becomes human again — and plants a tree.</p>
+    </div>
+    <div class="echo-body">
+      <div class="echo-left">
+        <div class="echo s-mid" id="echo">
+          <svg viewBox="0 0 140 160" aria-label="ECHO the companion">
+            <ellipse class="e-shadow" cx="70" cy="150" rx="34" ry="7"/>
+            <line class="e-antenna" x1="70" y1="45" x2="70" y2="32"/>
+            <circle class="e-tip" cx="70" cy="28" r="7"/>
+            <path class="e-leaf" d="M70 28 C 76 12 92 10 98 12 C 96 26 82 32 70 28 Z"/>
+            <rect class="e-ear" x="28" y="66" width="7" height="16" rx="3"/>
+            <rect class="e-ear" x="105" y="66" width="7" height="16" rx="3"/>
+            <rect class="e-body" x="35" y="45" width="70" height="62" rx="20"/>
+            <rect class="e-screen" x="43" y="55" width="54" height="42" rx="12"/>
+            <rect class="e-eye" x="53" y="66" width="10" height="14" rx="5"/>
+            <rect class="e-eye" x="77" y="66" width="10" height="14" rx="5"/>
+            <path class="e-smile" d="M57 87 Q70 97 83 87"/>
+            <path class="e-frown" d="M57 92 Q70 82 83 92"/>
+            <path class="e-flat" d="M57 90 L83 90"/>
+          </svg>
+        </div>
+        <p id="echo-mood">MOOD: OK</p>
+        <p class="echo-streak">TREES PLANTED: <span id="echo-trees">0</span> 🌳</p>
+      </div>
+      <div class="echo-mid">
+        <div class="score-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="ring-bg" cx="50" cy="50" r="42"/>
+            <circle class="ring-fg" id="ring-fill" cx="50" cy="50" r="42"/>
+          </svg>
+          <div class="score-mid"><span id="score-num">70</span><small>BALANCE</small></div>
+        </div>
+        <p class="co2">≈ <span id="co2-val">0</span> g CO₂ emitted today <em>(est.)</em></p>
+      </div>
+      <div class="echo-right">
+        <p class="echo-sub">LOG AN ACTIVITY</p>
+        <div class="echo-btns">
+          <button class="btn btn-ghost" data-act="scroll">📱 doomscroll · 1h</button>
+          <button class="btn btn-ghost" data-act="stream">📺 stream video · 1h</button>
+          <button class="btn btn-ghost" data-act="ai">🤖 AI chat session</button>
+          <button class="btn btn-primary" data-act="outside">🌳 go outside · 1h</button>
+        </div>
+        <ul id="echo-log" class="log"></ul>
+      </div>
+    </div>
+    <div class="grove" id="echo-grove"><span class="grove-label">ECHO'S GROVE</span></div>
+  </div>
+
+  <!-- FOCUS TEST -->
+  <div class="widget reveal" id="focus-widget">
+    <div class="widget-head">
+      <h3>FOCUS TEST <span class="blink">●</span></h3>
+      <p>One sentence to read. Fifteen seconds. Close every pop-up that attacks your attention.</p>
+    </div>
+    <div class="focus-area" id="focus-area">
+      <p class="focus-sentence" id="focus-sentence">"Humanity is a conversation,<br>not a notification."</p>
+      <button class="btn btn-primary" id="focus-start">▶ START — 15s</button>
+    </div>
+    <p class="focus-result" id="focus-result"></p>
+  </div>
+
+  <div class="discuss reveal">
+    <h4>◈ DISCUSS</h4>
+    <ul>
+      <li>When did you last check your phone without consciously deciding to?</li>
+      <li>If attention is a resource being mined, who profits — and who pays?</li>
+      <li>Can technology designed for addiction ever be "neutral"?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 2 ============ -->
+<section id="ch2" class="section chapter">
+  <div class="ghost-num" aria-hidden="true">02</div>
+  <div class="section-head reveal">
+    <p class="chapter-tag">CHAPTER 02 — CYBERBULLYING</p>
+    <h2>SILENT ECHOES</h2>
+    <p class="tagline">Behind every username, a heartbeat.</p>
+  </div>
+  <div class="two-col">
+    <div class="prose reveal">
+      <p>School bullying used to end at the school gate. For today's teenagers, it follows them home, into their bedroom, into their pocket. The screen creates distance — and distance makes cruelty easier. A joke in a group chat, a "harmless" meme, a pile-on of laughing emojis: online, the audience never leaves.</p>
+      <p>Nearly <strong>half of American teenagers</strong> have experienced online harassment. The most common forms are name-calling, spreading false rumours, and receiving unwanted explicit images. Victims report higher rates of depression, anxiety and self-harm — and most never tell an adult.</p>
+      <p>The hardest role is not the bully's or the victim's. It is the <strong>bystander's</strong> — everyone who saw the messages and said nothing.</p>
+    </div>
+    <div class="reveal">
+      <div class="video-wrap lite" data-ytid="MV5v0m6pEMs" data-title="Cyber Bullying: Create No Hate — short film"></div>
+      <p class="video-caption">▸ "Create No Hate" — award-winning cyberbullying short film by Luke Culhane (2016). <a href="https://youtu.be/MV5v0m6pEMs" target="_blank" rel="noopener">↗ open on YouTube</a></p>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE STORY -->
+  <div class="widget reveal" id="story-widget">
+    <div class="widget-head">
+      <h3>AN INTERACTIVE STORY <span class="blink">●</span></h3>
+      <p>You are Sam. It's 22:47. The class group chat is buzzing. What you do next matters.</p>
+    </div>
+    <div class="phone">
+      <div class="phone-top"><span>CLASS 11B · group chat</span><span class="phone-time">22:47</span></div>
+      <div id="chat" class="chat"></div>
+      <div id="choices" class="choices"></div>
+    </div>
+  </div>
+
+  <!-- REPORT OR SCROLL -->
+  <div class="widget reveal" id="report-widget">
+    <div class="widget-head">
+      <h3>REPORT OR SCROLL? <span class="blink">●</span></h3>
+      <p>Your feed, five messages. For each one: report it, or keep scrolling?</p>
+    </div>
+    <div class="report-card" id="report-card"></div>
+    <p class="report-explain" id="report-explain"></p>
+    <div class="report-btns">
+      <button class="btn btn-primary" id="rep-report">🚩 Report</button>
+      <button class="btn btn-ghost" id="rep-skip">Keep scrolling</button>
+    </div>
+    <p class="report-progress" id="report-progress"></p>
+  </div>
+
+  <div class="discuss reveal">
+    <h4>◈ DISCUSS</h4>
+    <ul>
+      <li>Why is staying silent online often easier — and more dangerous — than speaking?</li>
+      <li>Does a laughing emoji make you part of the bullying?</li>
+      <li>What should platforms do versus what should WE do?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 3 ============ -->
+<section id="ch3" class="section chapter">
+  <div class="ghost-num" aria-hidden="true">03</div>
+  <div class="section-head reveal">
+    <p class="chapter-tag">CHAPTER 03 — TECH &amp; MODERN CONFLICTS</p>
+    <h2>SILENT INTELLIGENCE</h2>
+    <p class="tagline">When algorithms decide who lives.</p>
+  </div>
+  <div class="two-col">
+    <div class="prose reveal">
+      <p>In April 2024, journalists at <strong>+972 Magazine and Local Call</strong> published a landmark investigation: the Israeli military was using an AI system called <strong>"Lavender"</strong> to generate kill lists in Gaza — marking around <strong>37,000 Palestinians</strong> as suspected militants. According to six intelligence officers who spoke to the journalists, humans spent roughly <strong>20 seconds</strong> reviewing each name before bombing — often treating the machine's output "as if it were a human decision".</p>
+      <p>A second system, cynically nicknamed <strong>"Where's Daddy?"</strong>, tracked those targets and flagged when they entered their family homes — so strikes could hit them at night, with their families inside. Officers knew the AI made mistakes in roughly <strong>10% of cases</strong>.</p>
+      <p>The 2024 documentary <strong>NAZA</strong> — Israeli military slang for the number of civilians permitted to be killed as "collateral damage" — puts 24 intelligence officers in front of a camera. They describe the work as <em>"like a video game"</em>. High tech. Zero empathy.</p>
+      <p>And it is not only bombs: surveillance systems scan faces at checkpoints, social-media posts are filtered and censored, and populations live under permanent digital observation. Technology does not just record the conflict — <strong>it industrialises it.</strong></p>
+    </div>
+    <div class="reveal">
+      <div class="video-wrap lite" data-ytid="4RmNJH4UN3s" data-title="Lavender &amp; Where's Daddy — Democracy Now report"></div>
+      <p class="video-caption">▸ Democracy Now! report on the +972 "Lavender" investigation (2024). <a href="https://youtu.be/4RmNJH4UN3s" target="_blank" rel="noopener">↗ open on YouTube</a></p>
+      <p class="video-caption">▸ Also see: <a href="https://naza-documentary.com" target="_blank" rel="noopener">naza-documentary.com</a></p>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="tl-item"><span class="tl-name">THE GOSPEL</span><p>AI system generating bombing targets: buildings, infrastructure — destruction at machine speed.</p></div>
+    <div class="tl-item"><span class="tl-name">LAVENDER</span><p>AI scoring every person in Gaza, outputting ~37,000 suspected targets. Known ~10% error rate.</p></div>
+    <div class="tl-item"><span class="tl-name">WHERE'S DADDY?</span><p>Tracked marked individuals and alerted operators when they arrived home — to strike them with their families.</p></div>
+    <div class="tl-item"><span class="tl-name">NAZA</span><p>The documentary: officers who ran these systems, on camera. "Like a video game."</p></div>
+  </div>
+
+  <!-- THE 20-SECOND DECISION -->
+  <div class="widget reveal terminal" id="decision-widget">
+    <div class="widget-head">
+      <h3>THE 20-SECOND DECISION <span class="blink-red">●</span></h3>
+      <p>An AI has flagged a human being. You are the analyst on shift. Officers spent ~20 seconds per name. You have 20 seconds.</p>
+    </div>
+    <div class="dec-box" id="dec-box">
+      <button class="btn btn-primary" id="dec-start">▶ OPEN TARGET FILE</button>
+    </div>
+  </div>
+
+  <!-- SPOT THE BOT -->
+  <div class="widget reveal" id="bot-widget">
+    <div class="widget-head">
+      <h3>SPOT THE BOT <span class="blink">●</span></h3>
+      <p>Two posts. One written by a human, one by an AI. Can you tell them apart?</p>
+    </div>
+    <p class="bot-round" id="bot-round"></p>
+    <div class="bot-panels">
+      <button class="bot-panel" id="bot-a"></button>
+      <button class="bot-panel" id="bot-b"></button>
+    </div>
+    <p class="bot-explain" id="bot-explain"></p>
+    <p class="bot-score" id="bot-score"></p>
+  </div>
+
+  <div class="discuss reveal">
+    <h4>◈ DISCUSS</h4>
+    <ul>
+      <li>Who is responsible when an AI chooses a target — the coder, the officer, the machine?</li>
+      <li>Does framing war as "data" make killing psychologically easier?</li>
+      <li>Similar systems watch civilians everywhere. Where should humanity draw the line?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 4 ============ -->
+<section id="ch4" class="section chapter">
+  <div class="ghost-num" aria-hidden="true">04</div>
+  <div class="section-head reveal">
+    <p class="chapter-tag">CHAPTER 04 — ECOLOGY</p>
+    <h2>THE HIDDEN COST</h2>
+    <p class="tagline">The cloud is not in the sky. It drinks rivers.</p>
+  </div>
+  <div class="two-col">
+    <div class="prose reveal">
+      <p>"The cloud" is a marketing word for millions of servers in warehouses that run hot — and must be cooled, often with fresh water. Researchers at UC Riverside estimate that training one large AI model like GPT-3 can consume <strong>~700,000 litres</strong> of clean water, and that a conversation of 10–50 prompts with a chatbot drinks roughly a <strong>500ml bottle</strong>.</p>
+      <p>Google's data centres used about <strong>24.7 billion litres of water in 2023</strong> — up ~17% in one year. Microsoft's consumption rose 34% from 2021 to 2022. By 2027, global AI infrastructure could demand <strong>4–7 billion cubic metres</strong> of water a year — the annual consumption of a country like Denmark.</p>
+      <p>The bitter irony: many data centres are built in regions already suffering drought — in Chile, Uruguay, the American West — competing with farms and families for the same water.</p>
+    </div>
+    <div class="reveal">
+      <div class="video-wrap lite" data-ytid="cl1ctf1_JxE" data-title="Why data centres are eating up enormous water resources — DW"></div>
+      <p class="video-caption">▸ DW — "Why data centers are eating up enormous water resources". <a href="https://youtu.be/cl1ctf1_JxE" target="_blank" rel="noopener">↗ open on YouTube</a></p>
+    </div>
+  </div>
+
+  <!-- WATER CALCULATOR -->
+  <div class="widget reveal" id="water-widget">
+    <div class="widget-head">
+      <h3>THE THIRST CALCULATOR <span class="blink">●</span></h3>
+      <p>Rough estimate of an AI habit's hidden water footprint <em>(illustrative, based on published research)</em>.</p>
+    </div>
+    <div class="calc-body">
+      <label for="queries">AI queries per day: <strong id="queries-label">30</strong></label>
+      <input type="range" id="queries" min="0" max="500" value="30">
+      <div class="calc-out">
+        <div><span id="water-day">0</span><small>water / day</small></div>
+        <div><span id="water-year">0</span><small>litres / year</small></div>
+        <div><span id="water-bottles">0</span><small>≈ 500ml bottles</small></div>
+      </div>
+      <p class="calc-note">Multiply that by ~100 million daily users… and the river starts to feel it.</p>
+    </div>
+  </div>
+
+  <div class="discuss reveal">
+    <h4>◈ DISCUSS</h4>
+    <ul>
+      <li>Should AI companies be required to publish their water and energy usage?</li>
+      <li>Is "digital" ever truly clean — or just invisible?</li>
+      <li>Would you change your habits if your phone showed your water footprint?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 5 ============ -->
+<section id="ch5" class="section chapter">
+  <div class="ghost-num" aria-hidden="true">05</div>
+  <div class="section-head reveal">
+    <p class="chapter-tag">CHAPTER 05 — SOLUTIONS</p>
+    <h2>RECONNECT</h2>
+    <p class="tagline">Logging off is not disappearing.</p>
+  </div>
+  <div class="prose reveal">
+    <p>This project is not anti-technology. The same networks that enable harassment also let families stay close across oceans, let citizens document injustice, let anyone learn anything. The question is not <em>whether</em> we use technology — it is whether <strong>we</strong> use it, or it uses us.</p>
+  </div>
+  <div class="action-grid reveal">
+    <div class="action-card"><h4>Grayscale your screen</h4><p>Colour is engineered to attract. A grey phone is a boring phone — and a quieter brain.</p></div>
+    <div class="action-card"><h4>Kill the slot machine</h4><p>Turn off every notification that isn't from a human you love. Pull-to-refresh is a leash.</p></div>
+    <div class="action-card"><h4>A digital sunset</h4><p>Screens off one hour before sleep. The algorithm will survive without you.</p></div>
+    <div class="action-card"><h4>Verify before you amplify</h4><p>Fake news spreads six times faster than truth. Your share button is a responsibility.</p></div>
+    <div class="action-card"><h4>Speak up, don't scroll past</h4><p>A single "that's not OK" in a group chat can end a pile-on. Silence is also a message.</p></div>
+    <div class="action-card"><h4>Count the invisible</h4><p>Attention, data, water, lives — what we can't see still costs. Keep asking who pays.</p></div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="widget reveal" id="quiz-widget">
+    <div class="widget-head">
+      <h3>DIAGNOSTIC <span class="blink">●</span></h3>
+      <p>Five questions. How much of your humanity is still offline?</p>
+    </div>
+    <div id="quiz-box" class="quiz-box"></div>
+  </div>
+
+  <!-- DIGITAL PLEDGE -->
+  <div class="widget reveal" id="pledge-widget">
+    <div class="widget-head">
+      <h3>THE DIGITAL PLEDGE <span class="blink">●</span></h3>
+      <p>Pick your commitments. Sign. Screenshot it.</p>
+    </div>
+    <div class="pledge-form">
+      <label><input type="checkbox" value="No phone for the first 30 minutes of the day"> No phone for the first 30 minutes of the day</label>
+      <label><input type="checkbox" value="One screen-free meal every day"> One screen-free meal every day</label>
+      <label><input type="checkbox" value="Check the source before sharing anything"> Check the source before sharing anything</label>
+      <label><input type="checkbox" value="Say something when a chat turns cruel"> Say something when a chat turns cruel</label>
+      <label><input type="checkbox" value="One fully offline evening per week"> One fully offline evening per week</label>
+      <label><input type="checkbox" value="Ask what my clicks cost — attention, data, water"> Ask what my clicks cost — attention, data, water</label>
+      <input type="text" id="pledge-name" placeholder="Your name (optional)" maxlength="30">
+      <button class="btn btn-primary" id="pledge-sign">✍ SIGN THE PLEDGE</button>
+    </div>
+    <div class="pledge-card" id="pledge-card"></div>
+  </div>
+</section>
+
+<!-- ============ WATCH ============ -->
+<section id="watch" class="section">
+  <div class="section-head reveal">
+    <p class="chapter-tag">THE EVIDENCE</p>
+    <h2>WATCH</h2>
+    <p class="tagline">Short films, docs and talks — one tab per echo. Click a card to play.</p>
+  </div>
+  <div class="feed-tabs reveal" id="watch-tabs">
+    <button class="tab active" data-cat="feed">The Feed</button>
+    <button class="tab" data-cat="echoes">Echoes</button>
+    <button class="tab" data-cat="conflicts">Conflicts</button>
+    <button class="tab" data-cat="planet">Planet</button>
+  </div>
+  <div class="watch-grid reveal" id="watch-grid"></div>
+</section>
+
+<!-- ============ LIVE FEED ============ -->
+<section id="feed" class="section">
+  <div class="section-head reveal">
+    <p class="chapter-tag">THE SIGNAL — LIVE</p>
+    <h2>THIS IS HAPPENING <span class="blink-red">● NOW</span></h2>
+    <p class="tagline">Real headlines, updating with the news. The echo never stops.</p>
+  </div>
+  <div class="feed-tabs reveal" id="feed-tabs">
+    <button class="tab active" data-feed="all">All signals</button>
+    <button class="tab" data-feed="mental">Health &amp; mind</button>
+    <button class="tab" data-feed="cyber">Social media</button>
+    <button class="tab" data-feed="conflict">Conflict</button>
+    <button class="tab" data-feed="planet">AI &amp; planet</button>
+  </div>
+  <p class="feed-status reveal" id="feed-status">Connecting to the signal…</p>
+  <div class="feed-grid reveal" id="feed-grid"></div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section id="sources" class="section">
+  <div class="section-head reveal">
+    <p class="chapter-tag">RECEIPTS</p>
+    <h2>SOURCES &amp; CREDITS</h2>
+  </div>
+  <div class="sources-grid reveal">
+    <div>
+      <h4>Films &amp; investigations</h4>
+      <ul>
+        <li><em>The Social Dilemma</em> — Jeff Orlowski, Netflix (2020)</li>
+        <li><em>"Lavender: The AI machine directing Israel's bombing spree in Gaza"</em> — Yuval Abraham, +972 Magazine / Local Call (2024)</li>
+        <li><em>NAZA</em> — documentary, naza-documentary.com</li>
+        <li><em>Create No Hate</em> — Luke Culhane (2016)</li>
+        <li>Democracy Now! — report on the Lavender investigation (2024)</li>
+        <li>DW <em>Transforming Business</em> — data centres &amp; water</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Research &amp; data</h4>
+      <ul>
+        <li>Pew Research Center — <em>Teens and Cyberbullying</em> (2022)</li>
+        <li>Li et al., UC Riverside — <em>Making AI Less "Thirsty"</em> (2023)</li>
+        <li>Google Environmental Report (2024)</li>
+        <li>DataReportal — <em>Digital Global Overview</em> (2024)</li>
+        <li>UNICEF — Digital Citizenship &amp; Online Safety</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Made by</h4>
+      <ul class="credits">
+        <li>BELABED Yacine</li>
+        <li>Seif Eddine Meziani Anouar</li>
+        <li>English class — 2026</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p class="foot-line">SILENT_ECHOES — a Digital Humanity project</p>
+  <p class="foot-sub">Echoes fade. Actions remain.</p>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
