@@ -2,7 +2,7 @@
 
 > *We live through screens. What does that do to us?*
 
-**Silent Echoes** is an interactive, single-page web documentary about the hidden human cost of our digital lives. It follows the "echoes" our clicks leave behind — in our brains, in our classrooms, in war zones, and in the rivers that cool the machines.
+**Silent Echoes** is an interactive, single-page web documentary created by a team including myself and Anouar SEIF EDDINE MEZIANI— about the hidden human cost of our digital lives. It follows the "echoes" our clicks leave behind — in our brains, in our classrooms, in war zones, and in the rivers that cool the machines.
 
 The project is not anti-technology. Its question is not *whether* we use technology, but whether **we** use it — or it uses us.
 
