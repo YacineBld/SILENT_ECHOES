@@ -26,7 +26,7 @@ The site is structured as a descent through five chapters, framed by an introduc
 | **This is happening — Now** | Live feed | Real headlines pulled live from BBC and The Guardian RSS feeds, filtered by topic, with curated fallback links. |
 | **Sources & Credits** | — | Every statistic and video is referenced. |
 
-The hero section features the original short film **"Silent Echoes — Digital Humanity"** (`Silent_Echoes-Digital Humanity .mp4`).
+The hero section features the original short film **"Silent Echoes — Digital Humanity"** (`SILENT-ECHOES_Digital-humanity.mp4`).
 
 ## Features
 
@@ -58,7 +58,7 @@ SILENT_ECHOES/
 ├── js/
 │   ├── data.js                         # Content: story, quiz, videos, feeds
 │   └── main.js                         # Interactivity and widgets
-└── Silent_Echoes-Digital Humanity .mp4 # Original short film
+└── SILENT-ECHOES_Digital-humanity.mp4  # Original short film
 ```
 
 ## Run it locally
